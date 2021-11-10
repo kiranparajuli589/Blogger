@@ -13,7 +13,8 @@ if (process.env.JAWSDB_URL) {
     dialect: 'mysql',
     port: 3306
   });
-  console.log(sequelize, 'LOCAL_DB is bad');
+  if (!sequelize) console.log('Cannot connect to localDB')
+  else console.log('DB connected!')
 }
 
 module.exports = sequelize;
