@@ -6,7 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions"
+    "start:chrome-docker": "docker run --rm -d --network=host -p 4444:4444 --shm-size='2g' --name=web-test-chrome selenium/standalone-chrome:4.1.0-prerelease-20211105",
+    "start:firefox-docker": "docker run --rm -d --network=host -p 4444:4444 --shm-size='2g' --name=web-test-firefox selenium/standalone-firefox:4.1.0-prerelease-20211105",
+    "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions"
   },
   "keywords": [
     "blog",
@@ -14,18 +16,18 @@
   ],
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^10.0.0",
     "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.4",
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3-rc.0",
-    "sequelize": "^6.9.0",
-    "connect-session-sequelize": "^7.1.2"
+    "sequelize": "^6.9.0"
   },
   "devDependencies": {
-    "nightwatch": "^1.7.11",
-    "nightwatch-api": "^3.0.2",
-    "@cucumber/cucumber": "^8.0.0-rc.1"
+    "@cucumber/cucumber": "^8.0.0-rc.1",
+    "nightwatch": "^1.4.0",
+    "nightwatch-api": "^3.0.1"
   }
 }

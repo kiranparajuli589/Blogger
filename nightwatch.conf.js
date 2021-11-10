@@ -1,7 +1,10 @@
+const dotenv = require('dotenv').config()
+const PORT = process.env.PORT || 3001;
+
 module.exports = {
     test_settings : {
         default : {
-            launch_url : `${process.env.HOST}:${process.env.PORT}`,
+            launch_url : `http://localhost:${PORT}`,
             selenium: {
                 start_process : false,
                 port : 4444,

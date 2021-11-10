@@ -1,4 +1,5 @@
 const path = require('path');
+const dotenv = require('dotenv').config()
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
@@ -32,5 +33,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(require('./controllers/'));
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log('Listening at http://localhst:' + PORT));
 });
