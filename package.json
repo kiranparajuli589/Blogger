@@ -5,7 +5,8 @@
   "author": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions"
   },
   "keywords": [
     "blog",
@@ -21,5 +22,10 @@
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3-rc.0",
     "sequelize": "^6.9.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^8.0.0-rc.1",
+    "nightwatch": "^1.7.11",
+    "nightwatch-api": "^3.0.2"
   }
 }
