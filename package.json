@@ -1,35 +1,25 @@
 {
   "name": "blogger",
   "version": "1.0.0",
-  "description": "",
+  "description": "A minimal blogging website",
+  "author": "",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/benwade91/Blogger.git"
-  },
   "keywords": [
-    "example",
+    "blog",
     "heroku"
   ],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
-    "connect-session-sequelize": "^7.1.1",
-    "dotenv": "^8.2.0",
+    "connect-session-sequelize": "^7.1.2",
+    "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "express-handlebars": "^5.2.1",
-    "express-session": "^1.17.1",
-    "mysql2": "^2.2.5",
-    "nodemon": "^2.0.7",
-    "sequelize": "6.5.1",
-    "validator": "^13.7.0"
-  },
-  "bugs": {
-    "url": "https://github.com/benwade91/Blogger/issues"
-  },
-  "homepage": "https://github.com/benwade91/Blogger#readme"
+    "express-handlebars": "^5.3.4",
+    "express-session": "^1.17.2",
+    "mysql2": "^2.3.3-rc.0",
+    "sequelize": "^6.9.0"
+  }
 }
