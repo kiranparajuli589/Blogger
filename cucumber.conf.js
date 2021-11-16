@@ -3,25 +3,14 @@ const {startWebDriver, stopWebDriver, createSession, closeSession} = require('ni
 
 setDefaultTimeout(60000)
 
-const availableBrowsers = ["chrome", "firefox", "ie"];
 
-const browser = process.env.BROWSER || "chrome";
-
-if (!availableBrowsers.includes(browser)) {
-    throw new Error(
-      "\nInvalid browser selected.\n" +
-      "Available browsers: " +
-      availableBrowsers.join(", ") +
-      "\n"
-    );
-}
 
 BeforeAll(async function (){
-    await startWebDriver({ env: browser })
+    await startWebDriver({})
 })
 
 Before((async function(){
-    await createSession({ env: browser })
+    await createSession({})
 }))
 
 AfterAll(async function(){
