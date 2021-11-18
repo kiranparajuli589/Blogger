@@ -1,5 +1,47 @@
-const {Given, When, Then} = require('@cucumber/cucumber')
+const {Given, When, Then, After, Before} = require('@cucumber/cucumber')
 const {client} = require('nightwatch-api')
+const axios = require("axios")
+const util = require("util")
+
+const userDetailUrl = client.launch_url + "/api/users/%s"
+const userListUrl = client.launch_url + "/api/users/"
+
+let createdUsersList = []
+
+After(() => {
+    if (createdUsersList.length > 0) {
+        createdUsersList.forEach((userToDelete, index) => {
+            axios.delete(util.format(userDetailUrl, userToDelete.id))
+            .then(() => {
+                delete createdUsersList.splice(index, 1)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        })
+    }
+})
+
+Given("the user has been created with following details:", dataTable => {
+    const userToBeCreated = dataTable.rowsHash()
+    axios.post(userListUrl, userToBeCreated)
+        .then(res => {
+            createdUsersList.push({
+                id: res['id'],
+                username: res['username']
+            })
+        })
+        .catch((err) => {
+            throw new Error("User with username " + dataTable.username + " cannot be created.\nError:\n" + err)
+        })
+
+})
+
+Given("the following users have been created with following details:", dataTable => {
+    const createdUsers = [{id: 3, email: ''}, {id: 4}]
+    createdUsersList = createdUsers
+})
+
 
 Given('the user has navigated to the homepage', function () {
     return client.url(client.launchUrl)
