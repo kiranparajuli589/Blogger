@@ -1,10 +1,12 @@
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || "http://localhost";
 const chromedriver = require("chromedriver")
 module.exports = {
+  page_objects_path: './tests/acceptance/pageObjects',
   test_settings: {
     default: {
-      launch_url: `http://host.docker.internal:${PORT}`,
+      launch_url:`${HOST}:${PORT}`,
 
         selenium_host: 'localhost',
         desiredCapabilities: {

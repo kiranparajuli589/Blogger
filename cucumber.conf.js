@@ -7,6 +7,7 @@ setDefaultTimeout(60000)
 
 BeforeAll(async function (){
     await startWebDriver({})
+
 })
 
 Before((async function(){
