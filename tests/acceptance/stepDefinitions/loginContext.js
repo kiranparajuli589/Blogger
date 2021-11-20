@@ -3,36 +3,29 @@ const {client} = require('nightwatch-api')
 const axios = require('axios')
 const utils = require("util")
 
-
-let userListUrl = "http://localhost:3001/api/users/"
-let userDeleteUrl = userListUrl + "%s"
-let createdUserList = []
-
-
-
-After(() => {
-    createdUserList.forEach((user) => {
-         axios.delete(utils.format(userDeleteUrl,user.id))
-            .then()
-            .catch(err => {
-                console.log(err)
-            })
-    })
+After(async () => {
+    let userListUrl = client.globals.user_api_url
+    let userDeleteUrl = userListUrl
+    const response = await axios.get(userListUrl)
+    if (response.data.length !== 0) {
+        const latestUser = response.data[response.data.length - 1]
+        console.log(latestUser.id)
+        await axios.delete(userDeleteUrl + latestUser.id)
+    }
 })
 
 
-
-Given('the user has navigated to the homepage', function () {
+Given('the user has navigated to the homepage using the webUI', function () {
     return client.url(client.launchUrl)
 });
 
 Given('user has been created using following details:', async function (dataTable) {
+    let userListUrl = client.globals.user_api_url
     const userToBeCreated = dataTable.rowsHash()
-    const response = await axios.post(userListUrl,userToBeCreated)
-    if (response){
-        createdUserList.push(response.data)
+    const response = await axios.post(userListUrl, userToBeCreated)
+    if (response) {
+        client.globals.createdUserList.push(response.data)
     }
-    console.log(userToBeCreated["email"] + " is trying to login.")
 });
 
 When('the user logs in with following details using the webUI:', function (dataTable) {
@@ -40,6 +33,6 @@ When('the user logs in with following details using the webUI:', function (dataT
     client.page.loginPage().authenticate(userDetails)
 });
 
- Then('the user should see dashboard button', function () {
-     return client.assert.containsText('a[type=button].btn-outline-success', 'Dashboard')
- });
+Then('the user should see dashboard button', function () {
+    return client.assert.containsText('a[type=button].btn-outline-success', 'Dashboard')
+});

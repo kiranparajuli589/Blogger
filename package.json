@@ -32,7 +32,6 @@
     "geckodriver": "^2.0.4",
     "nightwatch": "^1.4.0",
     "nightwatch-api": "^3.0.1",
-    "selenium-server": "^3.141.59",
     "utils": "^0.3.1"
   }
 }
