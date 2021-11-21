@@ -4,8 +4,10 @@ const chromedriver = require("chromedriver")
 module.exports = {
   test_settings: {
     default: {
-      launch_url: `http://host.docker.internal:${PORT}`,
-
+      launch_url:`${HOST}:${PORT}`,
+      globals: {
+        user_api_url: 'http://localhost:3001/api/users/',
+      },
         selenium_host: 'localhost',
         desiredCapabilities: {
           browserName: 'chrome',
