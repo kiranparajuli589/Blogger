@@ -1,17 +1,11 @@
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 3001;
-const HOST = process.env.HOST || "http://localhost";
 const chromedriver = require("chromedriver")
-const axios = require("axios")
 module.exports = {
-  page_objects_path: './tests/acceptance/pageObjects',
   test_settings: {
     default: {
-      launch_url:`${HOST}:${PORT}`,
-      globals: {
-        user_api_url: 'http://localhost:3001/api/users/',
-        createdUserList : []
-      },
+      launch_url: `http://host.docker.internal:${PORT}`,
+
         selenium_host: 'localhost',
         desiredCapabilities: {
           browserName: 'chrome',

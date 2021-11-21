@@ -4,12 +4,6 @@ Feature: login
   So that I can write some nice blog posts
 
   Scenario: valid user login
-    Given the user has navigated to the homepage using the webUI
-    And user has been created using following details:
-      | username | demo             |
-      | email    | demo@example.com |
-      | password | demo             |
-    When the user logs in with following details using the webUI:
-      | email    | demo@example.com |
-      | password | demo             |
+    Given the user has navigated to the homepage
+    When the user logs in with email 'demo@example.com' and password 'demo' using the webUI
     Then the user should see dashboard button
