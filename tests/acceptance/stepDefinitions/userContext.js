@@ -1,11 +1,10 @@
-const {Given, When, Then, After} = require('@cucumber/cucumber')
+const {When, Then} = require('@cucumber/cucumber')
 const {client} = require('nightwatch-api')
 const axios = require("axios");
 
 When('the user navigates to the homepage using the webUI', function () {
     return client.url(client.launchUrl)
 });
-
 
 Then('the user should see sign up button', function () {
     return client.waitForElementPresent('#signupModal')
