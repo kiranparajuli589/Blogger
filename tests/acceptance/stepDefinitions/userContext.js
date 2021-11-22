@@ -1,7 +1,8 @@
-const { Given, After } = require("@cucumber/cucumber")
+const { Given, After, When } = require("@cucumber/cucumber")
 const axios = require("axios")
 const urls = require("./../fixtures/urls")
 const util = require("util")
+const { client } = require("nightwatch-api")
 
 const createdUsersList = []
 
@@ -29,4 +30,9 @@ Given("a user has been created with the following details", function (dataTable)
 
 Given("the following users have been created with following details:", dataTable => {
   throw new Error("pending implementations")
+})
+
+When("the user signs up with following details using webUI:", function (dataTable) {
+  const userDetails = dataTable.rowsHash()
+  client.page.userPage().signup(userDetails)
 })

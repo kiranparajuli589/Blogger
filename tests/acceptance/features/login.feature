@@ -14,3 +14,5 @@ Feature: login
       | password | demo             |
     Then the user should see the logout button on the webUI
     And the user should see the dashboard button on the webUI
+    And the login button should not be visible on the webUI
+    And the signup button should not be visible on the webUI
