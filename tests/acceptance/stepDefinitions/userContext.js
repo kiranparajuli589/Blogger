@@ -1,30 +1,29 @@
-const {Given, When, Then} = require('@cucumber/cucumber')
+const {When, Then} = require('@cucumber/cucumber')
 const {client} = require('nightwatch-api')
+const axios = require("axios");
 
-When('the user navigates to the homepage', function () {
+When('the user navigates to the homepage using the webUI', function () {
     return client.url(client.launchUrl)
-
 });
 
-
 Then('the user should see sign up button', function () {
-    return client.assert.containsText('button[data-bs-target="#signupModal"]','Sign-Up!')
+    return client.waitForElementPresent('#signupModal')
 });
 
 
 Then('the user should see login button', function () {
-    return client.assert.containsText('button[data-bs-target="#loginModal"]','Login')
- });
+    return client.waitForElementPresent("#loginModal")
+});
 
 Then('the user should not see login button', function () {
-    return client.waitForElementNotPresent('button[data-bs-target="#loginModal"]')
+    return client.waitForElementNotPresent('#loginModal')
 });
 
 Then('the user should not see signup button', function () {
-    return client.waitForElementNotPresent('button[data-bs-target="#signupModal"]')
+    return client.waitForElementNotPresent('#signupModal')
 });
 
-When('the user signup using the following details using webUI:', function (dataTable) {
+When('the user signs up with following details using webUI:', function (dataTable) {
     const userDetails = dataTable.rowsHash()
     return client.click('button[data-bs-target="#signupModal"]')
         .waitForElementVisible("#signupModal")
@@ -34,7 +33,7 @@ When('the user signup using the following details using webUI:', function (dataT
         .click('.signup-form button[type=submit]')
 });
 Then('the signup modal should not be displayed', function () {
-    return client.waitForElementNotVisible("#signupModal")
+    return client.waitForElementNotPresent("#signupModal")
 });
 Then('the signup model should be displayed', function () {
     return client.waitForElementVisible("#signupModal")
