@@ -1,28 +1,24 @@
-require("dotenv").config()
-const PORT = process.env.PORT || 3001
+const dotenv = require('dotenv').config()
+const PORT = process.env.PORT || 3001;
+const HOST = process.env.HOST || "http://localhost";
+
 module.exports = {
+  page_objects_path: 'tests/acceptance/pageObject/',
+  custom_commands_path: 'tests/acceptance/customCommands',
   test_settings: {
     default: {
-      launch_url: `http://host.docker.internal:${PORT}`,
-
-      selenium_host: "localhost",
-      desiredCapabilities: {
-        browserName: "chrome",
-        javascriptEnabled: true,
-        acceptSslCerts: true,
-        chromeOptions: {
-          args: ["disable-gpu", "ignore-certificate-errors"],
-          w3c: false
-        },
-        loggingPrefs: { browser: "ALL" }
+      launch_url: `${HOST}:${PORT}`,
+      globals: {
+        waitForAnimationsTimeout: 1000,
       },
-      webdriver: {
-        cli_args: ["--port=4444"],
+      selenium: {
         start_process: false,
-        port: 4444,
-        use_legacy_jsonwire: false
+        host: 'localhost',
+        port: 4444
+      },
+      desiredCapabilities: {
+        browserName: "chrome"
       }
-
-    }
+    },
   }
 }
