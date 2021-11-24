@@ -25,11 +25,12 @@ module.exports =  {
     },
     commands: {
         authenticate : function(dataTable){
-            return this.click("@dashboardBtn")
-                .waitForElementVisible("@dashboard")
+            return this.waitForElementVisible('@loginModalBtn')
+                .click("@loginModalBtn")
+                .waitForElementVisible("@loginModal")
                 .setValue('@inputEmailField',dataTable.email)
-                .setValue('inputPasswordField', dataTable.password)
-                .click('.login-form button[type=submit]')
+                .setValue('@inputPasswordField', dataTable.password)
+                .click('@loginFormBtn')
         }
     }
 }

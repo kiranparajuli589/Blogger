@@ -17,7 +17,6 @@
   ],
   "license": "ISC",
   "dependencies": {
-
     "bcrypt": "^5.0.1",
     "connect-session-sequelize": "^7.1.2",
     "dotenv": "^10.0.0",
@@ -28,7 +27,6 @@
     "sequelize": "^6.9.0"
   },
   "devDependencies": {
-    "axios": "^0.24.0",
     "@cucumber/cucumber": "^8.0.0-rc.1",
     "axios": "^0.24.0",
     "eslint": "^7.32.0",
