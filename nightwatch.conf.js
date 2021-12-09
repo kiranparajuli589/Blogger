@@ -1,44 +1,31 @@
 const dotenv = require('dotenv').config()
 const PORT = process.env.PORT || 3001;
-
+const chromedriver = require("chromedriver")
 module.exports = {
   test_settings: {
     default: {
-      launch_url: `http://localhost:${PORT}`,
-    },
-    selenium: {
-      selenium: {
-        start_process: true,
-        server_path: require("selenium-server").path,
-        cli_args: {
-          "webdriver.gecko.driver": require("geckodriver").path,
-          "webdriver.chrome.driver": require("chromedriver").path,
-          "webdriver.ie.driver":
-            process.platform === "win32" ? require("iedriver").path : "",
+      launch_url: `http://host.docker.internal:${PORT}`,
+
+        selenium_host: 'localhost',
+        desiredCapabilities: {
+          browserName: 'chrome',
+          javascriptEnabled: true,
+          acceptSslCerts: true,
+          chromeOptions: {
+            args: ['disable-gpu', 'ignore-certificate-errors'],
+            w3c: false
+          },
+          loggingPrefs: {browser: 'ALL'}
         },
-      },
-      webdriver: {
-        start_process: false
-      }
-    },
-    firefox: {
-      extends: "selenium",
-      desiredCapabilities: {
-        browserName: "firefox",
-        "moz:firefoxOptions": {
-          args: ["--headless"],
+        webdriver: {
+          server_path: chromedriver.path,
+          cli_args: ['--port=4444'],
+          start_process: false,
+          port: 4444,
+          use_legacy_jsonwire: false
         },
-      },
-    },
-    chrome: {
-      extends: "selenium",
-      desiredCapabilities: {
-        browserName: "chrome",
-        chromeOptions: {
-          args: ["--headless", "--no-sandbox", "--disable-gpu"],
-          w3c: false,
-        },
-      },
-    },
+
+
+    }
   }
 }
