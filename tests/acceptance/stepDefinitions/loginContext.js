@@ -2,9 +2,11 @@ const {Given, When, Then, After, Before} = require('@cucumber/cucumber')
 const {client} = require('nightwatch-api')
 const axios = require("axios")
 const util = require("util")
+const {cli} = require("nightwatch")
+const urls = require("tests/acceptance/fixtures/urls.json")
 
-const userDetailUrl = client.launch_url + "/api/users/%s"
-const userListUrl = client.launch_url + "/api/users/"
+const userDetailUrl = client.launch_url + urls.user.detail
+const userListUrl = client.launch_url + urls.user.list
 
 let createdUsersList = []
 
@@ -14,9 +16,6 @@ After(() => {
             axios.delete(util.format(userDetailUrl, userToDelete.id))
             .then(() => {
                 delete createdUsersList.splice(index, 1)
-            })
-            .catch((err) => {
-                console.log(err)
             })
         })
     }
