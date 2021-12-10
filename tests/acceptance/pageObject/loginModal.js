@@ -1,12 +1,10 @@
 const {client} = require("nightwatch-api");
+
 module.exports =  {
     url : function () {
         return this.api.launch_url()
     },
     elements :{
-        loginModalBtn : {
-            selector : 'button[data-bs-target="#loginModal"]',
-        },
         loginModal : {
             selector: "#loginModal",
         },
@@ -20,17 +18,24 @@ module.exports =  {
             selector : '.login-form button[type=submit]'
         },
         dashboardBtn : {
-            selector: 'a[type=button].btn-outline-success'
+            selector: '//a[.="Dashboard"]',
+            locateStrategy: 'xpath'
         }
     },
     commands: {
-        authenticate : function(dataTable){
-            return this.waitForElementVisible('@loginModalBtn')
+        submit() {
+            return this
+                .click('@loginFormBtn')
+                .waitForElementNotVisible("@loginModal")
+        },
+        authenticate(dataTable){
+            return this
+                .waitForElementVisible('@loginModalBtn')
                 .click("@loginModalBtn")
                 .waitForElementVisible("@loginModal")
                 .setValue('@inputEmailField',dataTable.email)
                 .setValue('@inputPasswordField', dataTable.password)
-                .click('@loginFormBtn')
-        }
+        },
+
     }
 }
