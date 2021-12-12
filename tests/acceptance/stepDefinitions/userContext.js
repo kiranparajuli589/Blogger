@@ -16,7 +16,7 @@ After(() => {
     }
 })
 
-Given('a user has been created with following details:', function (dataTable) {
+Given('a user has been created with the following details', function (dataTable) {
     const userToBeCreated = dataTable.rowsHash()
     axios.post(urls.user.list, {
         ...userToBeCreated

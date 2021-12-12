@@ -4,8 +4,13 @@ Feature: login
   So that I can write some nice blog posts
 
   Scenario: valid user login
-    Given the user has navigated to the homepage
-    When the user logs in with following details:
-      | email | demo@example.com |
+    Given a user has been created with the following details
+      | username | demo             |
+      | email    | demo@example.com |
       | password | demo             |
-    Then the user should see dashboard button
+    And the user has navigated to the homepage
+    When the user logs in with following credentials
+      | email    | demo@example.com |
+      | password | demo             |
+    Then the user should see the logout button on the webUI
+    And the user should see the dashboard button on the webUI
