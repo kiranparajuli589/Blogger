@@ -2,6 +2,7 @@ const router = require('express').Router();
 const {
     Comment
 } = require('../../models');
+const {getErrorObj} = require("../../utils/helpers.js");
 
 router.get('/', (req, res) => {
     Comment.findAll({
@@ -25,8 +26,9 @@ router.post('/', (req, res) => {
     })
       .then(dbCommentData => res.json(dbCommentData))
       .catch(err => {
-        console.log(err);
-        res.status(400).json(err);
+        const errObj = getErrorObj(err)
+        if (errObj) res.status(400).json(errObj)
+        else res.status(500).json(err);
       });
   }
 });

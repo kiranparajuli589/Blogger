@@ -1,10 +1,9 @@
 const router = require('express').Router();
-const sequelize = require('../../config/connection');
 const { Post, User, Comment } = require("../../models");
 const withAuth = require('../../utils/auth');
+const {getErrorObj} = require("../../utils/helpers.js");
 
 router.get('/', (req, res) => {
-  console.log('======================');
   Post.findAll({
     order: [['created_at', 'DESC']],
     attributes: [
@@ -30,7 +29,6 @@ router.get('/', (req, res) => {
    })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -61,7 +59,6 @@ router.get('/:id', (req, res) => {
       res.json(dbPostData);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json(err);
     });
 });
@@ -74,8 +71,9 @@ router.post('/',  withAuth,(req, res) => {
   })
     .then(dbPostData => res.json(dbPostData))
     .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+      const errObj = getErrorObj(err)
+      if (errObj) res.status(400).json(errObj)
+      else res.status(500).json(err);
     });
 });
 
@@ -99,8 +97,9 @@ router.put('/:id', (req, res) => {
       res.json(dbPostData);
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json(err);
+      const errObj = getErrorObj(err)
+      if (errObj) res.status(400).json(errObj)
+      else res.status(500).json(err);
     });
 });
 
