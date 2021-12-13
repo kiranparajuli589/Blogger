@@ -104,7 +104,6 @@ router.put("/:id", (req, res) => {
 })
 
 router.delete("/:id", withAuth, (req, res) => {
-  console.log("id", req.params.id)
   Post.destroy({
     where: {
       id: req.params.id
@@ -118,7 +117,6 @@ router.delete("/:id", withAuth, (req, res) => {
       res.json(dbPostData)
     })
     .catch(err => {
-      console.log(err)
       res.status(500).json(err)
     })
 })
