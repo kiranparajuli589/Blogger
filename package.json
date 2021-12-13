@@ -6,6 +6,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "lint": "eslint . --fix",
     "docker:chrome": "docker run --rm -d --network=host -p 4444:4444 -p 5900:5900 --name=blog-selenium-chrome selenium/standalone-chrome:latest",
     "docker:firefox": "docker run --rm -d --network=host -p 4444:4444 -p 5900:5900 --name=blog-selenium-firefox selenium/standalone-firefox:latest",
     "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions"
@@ -28,7 +29,11 @@
   "devDependencies": {
     "@cucumber/cucumber": "^8.0.0-rc.1",
     "axios": "^0.24.0",
-    "eslint": "^8.4.1",
+    "eslint": "^7.32.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
     "nightwatch": "^1.4.0",
     "nightwatch-api": "^3.0.1"
   }
