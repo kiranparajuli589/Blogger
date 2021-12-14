@@ -1,10 +1,10 @@
-const dotenv = require('dotenv').config()
-const PORT = process.env.PORT || 3001;
-const HOST = process.env.HOST || "http://localhost";
+require("dotenv").config()
+const PORT = process.env.PORT || 3001
+const HOST = process.env.HOST || "http://localhost"
 
 const base = `${HOST}:${PORT}`
 
-module.exports =  {
+module.exports = {
   user: {
     list: base + "/api/users/",
     detail: base + "/api/users/%s/"

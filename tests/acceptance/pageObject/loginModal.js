@@ -1,32 +1,30 @@
-const {client} = require("nightwatch-api");
-
 module.exports = {
   url: function () {
     return this.api.launch_url()
   },
   elements: {
     loginModal: {
-      selector: "#loginModal>.modal-dialog",
+      selector: "#loginModal>.modal-dialog"
     },
     emailField: {
-      selector: 'input#email-login'
+      selector: "input#email-login"
     },
     passwordField: {
-      selector: 'input#password-login'
+      selector: "input#password-login"
     },
     submitButton: {
-      selector: '.login-form button[type=submit]'
-    },
+      selector: ".login-form button[type=submit]"
+    }
   },
   commands: {
-    authenticate(dataTable) {
+    authenticate (dataTable) {
       return this
         .waitForElementVisible("@loginModal")
-        .setValue('@emailField', dataTable.email)
-        .setValue('@passwordField', dataTable.password)
+        .setValue("@emailField", dataTable.email)
+        .setValue("@passwordField", dataTable.password)
         .waitForElementVisible("@submitButton")
-        .click('@submitButton')
+        .click("@submitButton")
         .waitForAnimationsToFinish()
-    },
+    }
   }
 }

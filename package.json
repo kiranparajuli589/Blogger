@@ -6,14 +6,9 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-<<<<<<< HEAD
     "lint": "eslint . --fix",
     "docker:chrome": "docker run --rm -d --network=host -p 4444:4444 -p 5900:5900 --name=blog-selenium-chrome selenium/standalone-chrome:latest",
     "docker:firefox": "docker run --rm -d --network=host -p 4444:4444 -p 5900:5900 --name=blog-selenium-firefox selenium/standalone-firefox:latest",
-=======
-    "docker:chrome": "docker run --rm -d --network=host -p4444:4444 -p5900:5900 selenium/standalone-chrome-debug",
-    "docker:firefox": "docker run --rm -d --network=host -p4444:4444 -p5900:5900 selenium/standalone-firefox-debug",
->>>>>>> optimizations
     "test:e2e": "cucumber-js --require cucumber.conf.js --require tests/acceptance/stepDefinitions"
   },
   "keywords": [

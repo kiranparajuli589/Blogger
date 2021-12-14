@@ -1,25 +1,25 @@
-const {client} = require("nightwatch-api");
+const { client } = require("nightwatch-api")
 
 module.exports = {
   elements: {
     loginButton: {
-      selector: '#login'
+      selector: "#login"
     },
     homeButton: {
-      selector: '#home'
+      selector: "#home"
     },
     dashboardButton: {
-      selector: '#dashboard'
+      selector: "#dashboard"
     },
     signUpButton: {
-      selector: '#signup'
+      selector: "#signup"
     },
     logOutButton: {
-      selector: '#logout'
+      selector: "#logout"
     }
   },
   commands: {
-    login() {
+    login () {
       this.waitForElementVisible("@loginButton")
         .click("@loginButton")
       return client.page.loginModal()
@@ -32,7 +32,7 @@ module.exports = {
      * @returns String
      * @throws Error
      */
-    getButtonSelector(buttonType) {
+    getButtonSelector (buttonType) {
       const buttons = Object.keys(this.elements)
       if (!buttons.includes(buttonType)) {
         throw new Error(`Button ${buttonType} is not available in the app bar.\n
@@ -47,7 +47,7 @@ module.exports = {
      * @returns {*|void}
      * @throws Error
      */
-    clickButton(buttonType) {
+    clickButton (buttonType) {
       const buttonSelector = this.getButtonSelector(buttonType)
       return this
         .waitForElementVisible(buttonSelector)
@@ -61,7 +61,7 @@ module.exports = {
      * @returns {*}
      * @throws Error
      */
-    async isButtonVisible(buttonType) {
+    async isButtonVisible (buttonType) {
       const buttonSelector = this.getButtonSelector(buttonType)
       let isVisible
       await this.waitForElementVisible(buttonSelector, (result) => {
