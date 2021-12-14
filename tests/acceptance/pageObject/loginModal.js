@@ -6,7 +6,7 @@ module.exports = {
   },
   elements: {
     loginModal: {
-      selector: "#loginModal",
+      selector: "#loginModal>.modal-dialog",
     },
     emailField: {
       selector: 'input#email-login'
@@ -26,7 +26,7 @@ module.exports = {
         .setValue('@passwordField', dataTable.password)
         .waitForElementVisible("@submitButton")
         .click('@submitButton')
+        .waitForAnimationsToFinish()
     },
-
   }
 }

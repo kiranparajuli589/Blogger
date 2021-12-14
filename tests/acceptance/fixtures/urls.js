@@ -8,5 +8,9 @@ module.exports =  {
   user: {
     list: base + "/api/users/",
     detail: base + "/api/users/%s/"
+  },
+  post: {
+    list: base + "/api/posts/",
+    detail: base + "/api/posts/%s/"
   }
 }

@@ -1,11 +1,11 @@
 
-<div class="card">
-  <div class="card-header">
+<div class="card" data-test-id="{{id}}">
+  <div class="card-header ">
     {{format_date created_at}}
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{title}} <span class="fs-6 fw-lighter">by {{user.username}}</span></h5>
-    <p class="card-text">{{ post}}</p>
+    <h5 class="card-title title">{{title}} <span class="fs-6 fw-lighter author">by {{user.username}}</span></h5>
+    <p class="card-text content">{{ post}}</p>
     <span>{{comments.length}} {{format_plural "comment" comments.length}}</span>
     <a href="/post/{{id}}" class="stretched-link"></a>
   </div>
