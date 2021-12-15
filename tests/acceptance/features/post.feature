@@ -21,7 +21,7 @@ Feature: Post
       | title   | Valid New Post         |
       | content | This is a blog content |
       | author  | Demo                   |
-    Then a blog post should be visible with the following details on the webUI
+    Then the last created blog should be visible with the following details on the webUI
       | title   | Valid New Post         |
       | content | This is a blog content |
       | author  | Demo                   |

@@ -35,7 +35,7 @@ Then("the last created blog should exist with the following details", async (dat
   }
 })
 
-Then("a blog post should be visible with the following details on the webUI", async function (dataTable) {
+Then("the last created blog should be visible with the following details on the webUI", async function (dataTable) {
   const postData = dataTable.rowsHash()
   const post = createdPostsList[0] // getting last published post
   const actualPostContent = await client.page.dashboard().getPostDetailById(post.id)
