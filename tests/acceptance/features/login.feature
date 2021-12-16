@@ -1,4 +1,4 @@
-Feature: login
+Feature: Login
   As a user
   I want to log in to the website
   So that I can write some nice blog posts
@@ -14,3 +14,5 @@ Feature: login
       | password | demo             |
     Then the user should see the logout button on the webUI
     And the user should see the dashboard button on the webUI
+    And the login button should not be visible on the webUI
+    And the signup button should not be visible on the webUI
