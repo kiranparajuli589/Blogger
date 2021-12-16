@@ -1,4 +1,4 @@
-Feature: login
+Feature: Login
   As a user
   I want to log in to the website
   So that I can write some nice blog posts

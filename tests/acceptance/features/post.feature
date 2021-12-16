@@ -1,7 +1,7 @@
 Feature: Post
   As a user
   I want to write a post
-  so that I can publish it
+  So that I can publish it
 
   Scenario: Creating a valid new post
     Given a user has been created with the following details

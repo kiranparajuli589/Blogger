@@ -1,7 +1,7 @@
-Feature: creating New User Account
+Feature: Register
   As a user
   I want to create an account
-  So that i can login
+  So that I can start blogging
 
 
   Scenario: user tries to sign up with valid credentials
