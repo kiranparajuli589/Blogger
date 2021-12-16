@@ -1,8 +1,10 @@
-const { Given, After, When } = require("@cucumber/cucumber")
-const axios = require("axios")
-const urls = require("./../fixtures/urls")
-const util = require("util")
+const { Given, After, When, Then } = require("@cucumber/cucumber")
 const { client } = require("nightwatch-api")
+const util = require("util")
+const axios = require("axios")
+const assert = require("assert")
+
+const urls = require("./../fixtures/urls")
 
 const createdUsersList = []
 
@@ -32,7 +34,34 @@ Given("the following users have been created with following details:", dataTable
   throw new Error("pending implementations")
 })
 
-When("the user signs up with following details using webUI:", function (dataTable) {
+Given("the user has logged in with the following credentials", async (dataTable) => {
+  const userCred = dataTable.rowsHash()
+  await client.page.appBar().login().authenticate(userCred)
+  await client.page.appBar().isButtonVisible("logOutButton")
+})
+
+When("the user logs in with following credentials", (dataTable) => {
+  const userCred = dataTable.rowsHash()
+  return client.page.appBar().login().authenticate(userCred)
+})
+
+When("the user signs up with the following details using the webUI", function (dataTable) {
   const userDetails = dataTable.rowsHash()
-  client.page.userPage().signup(userDetails)
+  return client.page.appBar().clickSignup().signup(userDetails)
+})
+
+Then("the signup modal should be visible on the webUI", async () => {
+  const isVisible = await client.page.signupModal().getVisibilityStatusOfModal()
+  assert.ok(
+    isVisible,
+    "Expected signup modal to be visible but not found."
+  )
+})
+
+Then("the signup modal should not be visible on the webUI", async () => {
+  const isVisible = await client.page.signupModal().getVisibilityStatusOfModal()
+  assert.ok(
+    !isVisible,
+    "Expected signup modal not to be visible but was found."
+  )
 })

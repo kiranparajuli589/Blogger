@@ -11,10 +11,10 @@ module.exports = {
     dashboardButton: {
       selector: "#dashboard"
     },
-    signUpButton: {
+    signupButton: {
       selector: "#signup"
     },
-    logOutButton: {
+    logoutButton: {
       selector: "#logout"
     }
   },
@@ -23,6 +23,11 @@ module.exports = {
       this.waitForElementVisible("@loginButton")
         .click("@loginButton")
       return client.page.loginModal()
+    },
+    clickSignup () {
+      this.waitForElementVisible("@signupButton")
+        .click("@signupButton")
+      return client.page.signupModal()
     },
     /**
      * returns app bar button selector
@@ -63,10 +68,18 @@ module.exports = {
      */
     async isButtonVisible (buttonType) {
       const buttonSelector = this.getButtonSelector(buttonType)
-      let isVisible
-      await this.waitForElementVisible(buttonSelector, (result) => {
+      let isVisible = false
+      await this.waitForElementPresent({
+        selector: buttonSelector,
+        abortOnFailure: false
+      }, (result) => {
         isVisible = result.value
       })
+      if (isVisible) {
+        await this.isVisible(buttonSelector, (result) => {
+          isVisible = result.value
+        })
+      }
       return isVisible
     }
   }
