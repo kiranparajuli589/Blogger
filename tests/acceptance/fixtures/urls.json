@@ -1,6 +1,0 @@
-{
-  "user": {
-    "list": "/api/users/",
-    "detail": "/api/users/%s/"
-  }
-}

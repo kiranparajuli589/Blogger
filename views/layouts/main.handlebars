@@ -13,15 +13,27 @@
         <div class="container-fluid">
             <h1 class="navbar-brand">Blogger</h1>
             <form class="d-flex">
-                <a href="/" class="btn btn-outline-secondary me-2" type="button">Home</a>
+                <a id="home" href="/" class="btn btn-outline-secondary me-2" type="button">Home</a>
                 {{#if loggedIn}}
-                <a href="/dashboard" class="btn btn-outline-success me-2" type="button">Dashboard</a>
+                <a id="dashboard" href="/dashboard" class="btn btn-outline-success me-2" type="button">Dashboard</a>
                 <button id="logout" class="btn btn-outline-danger me-2" type="button">Logout</button>
                 {{else}}
-                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
-                    data-bs-target="#loginModal">Login</button>
-                <button type="button" class="btn btn-primary me-2" data-bs-toggle="modal"
-                    data-bs-target="#signupModal">Sign-Up!</button>
+                <button
+                    id="login" type="button"
+                    class="btn btn-primary me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#loginModal"
+                >
+                    Login
+                </button>
+                <button
+                    id="signup" type="button"
+                    class="btn btn-primary me-2"
+                    data-bs-toggle="modal"
+                    data-bs-target="#signupModal"
+                >
+                    Sign-Up!
+                </button>
                 {{/if}}
             </form>
         </div>
@@ -43,6 +55,4 @@
     {{>login-modal}}
     {{/if}}
 </body>
-
-
 </html>
