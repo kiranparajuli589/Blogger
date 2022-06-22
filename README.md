@@ -1,18 +1,6 @@
-# Blogger
-
 ## Description:
-Blogger is a simple app used to make blog posts. Users can sign-up with their email and a username to begin. Users can create, edit and delete their posts, as well as comment on other user's blog posts. When finished, the user can log-out and come back at a later time to update the world on what other fantastic things they've been up to. 
-The deployed app can be found at: 
-https://bens-blogger.herokuapp.com/
-![alt text](./db/screenshot.png?raw=true)
+Acceptance tests demonstration with NightwatchJS. :sparkles:
 
-## Table of Contents:
-* [Installation](#installation)
-* [Questions](#questions)
+Thanks to https://github.com/benwade91/Blogger, so that we could test a good blogger application. :pray:
 
-## Installation <a name="installation"/>
-This app requires Node.js, Express.js,the Sequelize ORM and Handlebars.js. 
-
-
-## Questions <a name="questions"/>
-Questions? Comments? Please Reach out to me by [Email](mailto:benn925@yahoo.com) or on [Github](https://github.com/benwade91).
+Big thanks to [@aaronanish12](https://github.com/aaronanish12) and [rasmibhattarai72](https://github.com/rasmibhattarai72) for the contributions and [@saw-jan](https://github.com/saw-jan), [@swoichha](https://github.com/swoichha) and [@SwikritiT](https://github.com/SwikritiT) for the mentorship assistance. :tada: :confetti_ball:
