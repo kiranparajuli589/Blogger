@@ -12,9 +12,9 @@ if (process.env.JAWSDB_URL) {
   else console.log("Sorry, cannot connect to JAW DB.")
 } else {
   sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PW, {
-    host: "localhost",
+    host: process.env.DB_HOST,
     dialect: "mysql",
-    port: 3306
+    port: process.env.DB_PORT
   })
   if (!sequelize) console.log("Sorry, cannot connect to the local database.")
   else console.log("Boom! Local DB connected.")

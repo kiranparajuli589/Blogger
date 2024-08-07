@@ -5,3 +5,4 @@ node_modules/*
 .vscode/
 selenium-server.log
 yarn-error.log
+mysql/
